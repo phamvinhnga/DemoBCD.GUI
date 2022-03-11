@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Organizational chart</title>
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+        <style type="text/css">
+
+            body{
+                margin: 0; padding: 0;
+            }
+            .wave{
+                position: relative;
+                -webkit-box-reflect: below -12px linear-gradient(transparent,rgba(0,0,0,0.2));
+            }
+            .wave span{
+                position: relative;
+                display: inline-block;
+                color:#fff;
+                font-size:2em;
+                text-transform: uppercase;
+                animation:animate 1.5s ease-in-out infinite;
+                animation-delay: calc(.1s * var(--c));
+            }
+            @keyframes animate{
+                0%,100%{
+                    transform: translateY(0px);
+                }
+                20%{
+                    transform: translateY(-20px);
+                }
+                40%{
+                    transform: translateY(0px);
+                }
+            }
+
+
+            #wrap-lds-roller{
+                display:flex;
+                justify-content: center;
+                align-items:center;
+                min-height:100vh;
+                background: linear-gradient(to right, rgb(72, 200, 46), rgb(46,200,199));
+            }
+            
+        </style> 
+
+    </head>
+    <body class="page-container-bg-solid">
+
+        <div id="wrap-lds-roller">
+            <div class="wave">
+                <span style="--c:1;">L</span>
+                <span style="--c:2;">O</span>
+                <span style="--c:3;">A</span>
+                <span style="--c:4;">D</span>
+                <span style="--c:5;">I</span>
+                <span style="--c:6;">N</span>
+                <span style="--c:7;">G</span>
+                <span style="--c:8;">.</span>
+                <span style="--c:9;">.</span>
+                <span style="--c:10;">.</span>
+            </div>
+        </div>
+
+        <m-root></m-root>
+    </body>
+
+    <script type="text/javascript">
+
+        window.addEventListener('load', (event) => {
+
+            setTimeout(() => {
+                document.getElementById("wrap-lds-roller").remove();
+            }, 1000);
+
+        });
+    
+    </script>
+
+</html>

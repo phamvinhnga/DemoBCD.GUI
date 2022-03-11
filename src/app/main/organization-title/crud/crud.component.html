@@ -1,0 +1,26 @@
+﻿
+<div>
+
+  <div style="background: #25aed7; color: white; font-size: 15px; padding: 5px 10px">
+    {{ title }}
+  </div>
+
+  <div class="padding-lr-15 padding-tb-15">
+
+    <div *ngFor="let item of list">
+      <input [(ngModel)]="item._isCheck" type="checkbox" class="form-check-input margin-r-7">
+      <span class="font-size-15">{{ item.name }} </span>
+    </div>
+
+  </div>
+
+  <div style="background: #25aed7; padding: 5px 10px">
+    <button (click)="save()" type="button" class="btn btn-success padding-tb-2 margin-r-7">
+      <i class="fa fa-save"></i> Save
+    </button>
+    <button (click)="_modalRef.hide()" type="button" class="btn btn-dark padding-tb-2 pull-right active"> 
+      <i class="fa fa-remove"></i> Close
+    </button>
+  </div>
+
+</div>
