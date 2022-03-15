@@ -1,12 +1,153 @@
-﻿<span> 
-    <input id="user-avatar" name="user-avatar"  style="display: none;" type="file"  (change)="onSelectFile($event)">
-    <label class="btn btn-sm green fileinput-button padding-tb-2" for="user-avatar">
-      <i class="fa fa-cloud-upload"></i>
-        Choose image
-    </label>
-  </span>
+﻿<div class="padding-lr-15 padding-tb-10">
+  <div class="portlet-body">
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#tab_2_1" data-toggle="tab" aria-expanded="true" style="font-weight: 600;"> 
+          <i class="fa fa-user"></i> User profile 
+        </a>
+      </li>
+      <li class="">
+        <a href="#tab_2_2" data-toggle="tab" aria-expanded="false" style="font-weight: 600;"> 
+          <i class="fa fa-key"></i> Password </a>
+      </li>
 
-  <img *ngIf="file" src="{{ file.data }}" alt="">
+    </ul>
+    <div class="tab-content padding-tb-20" style="background: #eafbff99;">
 
+      <div class="tab-pane fade active in" id="tab_2_1">
 
-  <img src="https://localhost:44360/api/File/GetFile?folder=User&id=1c76d85f-428f-4529-b0c8-605e3a23ee19_abc.jpg" alt="">
+        <div class="display-flex">
+
+          <div class="display-flex" style="flex-direction: column;">
+
+            <div class="margin-b-10">
+              <img width="250" height="260" src="{{ file && file.data ? file.data : _appSessionService.user.avatar }}"
+                alt="Avatar user">
+            </div>
+
+            <div>
+              <span>
+                <input id="user-avatar" name="user-avatar" style="display: none;" type="file"
+                  (change)="onSelectFile($event)">
+                <label class="btn btn-danger" for="user-avatar">
+                  <i class="fa fa-cloud-upload"></i>
+                  Choose image
+                </label>
+              </span>
+
+              <button [disabled]="!file" (click)="updateAvatarUser()" class="pull-right btn btn-primary">
+                <i class="fa fa-save"></i>
+                Save Avatar
+              </button>
+            </div>
+
+          </div>
+
+          <div class="margin-l-15 width-400" autocomplete="off" [formGroup]="formUserProfile">
+
+            <div class="form-group"
+              [ngClass]="{'has-error': formUserProfile.get('name').errors && formUserProfile.dirty  }"
+              style="margin-bottom: 5px !important;">
+              <label class="bold">Name</label>
+              <input class="form-control" placeholder="Please enter a name" autocomplete="off" formControlName="name">
+            </div>
+            <div ngxErrors="name" class="has-danger">
+              <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+                Name are not empty
+              </small>
+            </div>
+
+            <div class="form-group"
+              [ngClass]="{'has-error': formUserProfile.get('surname').errors && formUserProfile.dirty  }"
+              style="margin-top: 20px !important; margin-bottom: 5px !important;">
+              <label class="bold">Surname</label>
+              <input class="form-control" placeholder="Please enter a surname" autocomplete="off"
+                formControlName="surname">
+            </div>
+            <div ngxErrors="surname" class="has-danger">
+              <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+                Surname are not empty
+              </small>
+            </div>
+
+            <div class="form-group"
+              [ngClass]="{'has-error': formUserProfile.get('userName').errors && formUserProfile.dirty  }"
+              style="margin-top: 20px !important; margin-bottom: 5px !important;">
+              <label class="bold">Username</label>
+              <input type="text" class="form-control" placeholder="Please enter a userName" autocomplete="off"
+                name="userName" formControlName="userName">
+            </div>
+            <div ngxErrors="userName" class="has-danger">
+              <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+                Username is not empty
+              </small>
+              <small class="form-text text-danger" ngxError="maxlength" [when]="['dirty', 'touched']">
+                Maximum number of characters 255
+              </small>
+            </div>
+
+            <div class="text-right" style="margin-top: 20px">
+              <button (click)="updateUserProle()" class="btn btn-success btn-square btn-sm"
+                [disabled]="formUserProfile.invalid">
+                <i class="fa fa-save"></i>
+                Update profile</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tab-pane fade" id="tab_2_2">
+
+        <div class="margin-l-15 width-400" autocomplete="off" [formGroup]="formChangePassword">
+
+          <div class="form-group" [ngClass]="{'has-error': formChangePassword.get('password').errors && formUserProfile.dirty  }"
+            style="margin-top: 20px !important; margin-bottom: 5px !important;">
+            <label class="bold">Password</label>
+            <input type="password" class="form-control" placeholder="Please enter a password" autocomplete="off"
+              name="password" formControlName="password">
+          </div>
+          <div ngxErrors="password" class="has-danger">
+            <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+              Password is not empty
+            </small>
+            <small class="form-text text-danger" ngxError="maxlength" [when]="['dirty', 'touched']">
+              Maximum number of characters 32
+            </small>
+          </div>
+
+          <div class="form-group"
+            [ngClass]="{'has-error': formChangePassword.get('confirmPassword').errors && formUserProfile.dirty  }"
+            style="margin-top: 20px !important; margin-bottom: 5px !important;">
+            <label class="bold">Confirm password</label>
+            <input type="password" class="form-control" placeholder="Please confirm password" autocomplete="off"
+              name="confirmPassword" formControlName="confirmPassword">
+          </div>
+          <div ngxErrors="confirmPassword" class="has-danger">
+            <small class="form-text text-danger" ngxError="required" [when]="['dirty', 'touched']">
+              Password is not empty
+            </small>
+            <small class="form-text text-danger" ngxError="maxlength" [when]="['dirty', 'touched']">
+              Maximum number of characters 32
+            </small>
+          </div>
+
+          <div *ngIf="formChangePassword.dirty && formChangePassword.errors?.notSame && formChangePassword.controls.confirmPassword.dirty" class="has-danger">
+            <small class="form-text text-danger">Confirm password does not match </small>
+          </div>
+
+          <div class="text-right" style="margin-top: 20px">
+            <button (click)="changePassword()" class="btn btn-success btn-square btn-sm"
+              [disabled]="formChangePassword.invalid">
+              <i class="fa fa-save"></i>
+              Change password</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

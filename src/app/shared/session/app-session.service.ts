@@ -33,6 +33,11 @@ export class AppSessionService {
                 this._authenticationServiceProxy.getCurrentUser().toPromise().then((result: any) => {
                     if (result && result.id) {
                         this._user = result;
+
+                        if(!this._user.avatar){
+                            this._user.avatar = "https://img.thuthuatphanmem.vn/uploads/2018/09/22/avatar-den-bo-vest-dep_015639142.jpg";
+                        }
+
                     }
                     else this._user = null;
 
