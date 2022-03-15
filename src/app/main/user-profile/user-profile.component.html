@@ -1,0 +1,12 @@
+﻿<span> 
+    <input id="user-avatar" name="user-avatar"  style="display: none;" type="file"  (change)="onSelectFile($event)">
+    <label class="btn btn-sm green fileinput-button padding-tb-2" for="user-avatar">
+      <i class="fa fa-cloud-upload"></i>
+        Choose image
+    </label>
+  </span>
+
+  <img *ngIf="file" src="{{ file.data }}" alt="">
+
+
+  <img src="https://localhost:44360/api/File/GetFile?folder=User&id=1c76d85f-428f-4529-b0c8-605e3a23ee19_abc.jpg" alt="">

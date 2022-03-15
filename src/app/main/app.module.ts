@@ -25,6 +25,7 @@ import { AddUserOrganizationComponent } from './userOrganization/addUserOrganiza
 import { UserOrganizationComponent } from './userOrganization/userOrganization.component';
 import { UpdateTitleUserOrganizationComponent } from './userOrganization/updateTitleUserOrganization/updateTitleUserOrganization.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { PaginationComponent } from './pagination/pagination.component';
         UserOrganizationComponent,
         AddUserOrganizationComponent,
         UpdateTitleUserOrganizationComponent,
-        PaginationComponent
+        PaginationComponent,
+        UserProfileComponent
     ],
     imports: [
         CommonModule,
