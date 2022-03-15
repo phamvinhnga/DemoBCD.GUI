@@ -8,6 +8,7 @@ import { OrganizationComponent } from './organization/organization.component';
 import { TitleComponent } from './title/title.component';
 import { OrganizationTitleComponent } from './organization-title/organization-title.component';
 import { UserOrganizationComponent } from './userOrganization/userOrganization.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
     imports: [
@@ -40,9 +41,14 @@ import { UserOrganizationComponent } from './userOrganization/userOrganization.c
                         component: OrganizationTitleComponent,
                         canActivate: [AppRouteGuard]
                     },
-                          {
+                    {
                         path: 'user-organization',
                         component: UserOrganizationComponent,
+                        canActivate: [AppRouteGuard]
+                    },
+                    {
+                        path: 'user-profile',
+                        component: UserProfileComponent,
                         canActivate: [AppRouteGuard]
                     },
                 ]

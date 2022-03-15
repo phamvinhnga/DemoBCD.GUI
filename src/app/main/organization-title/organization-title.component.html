@@ -1,7 +1,35 @@
 ﻿<div class="padding-tb-20 padding-lr-15">
 
-  <div>
-    <h4 class="display-inline margin-t-0" style="font-weight: 600;">List of departmental titles</h4>
+  <h4 class="display-block margin-0 margin-b-15" style="font-weight: 600;">List of departmental titles</h4>
+
+  <div class="filter display-flex margin-b-10">
+
+    <div class="flex-fill display-flex">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-search"></i>
+        </span>
+        <input [(ngModel)]="listCriteria[0].value" type="text" class="form-control" placeholder="Search by name">
+      </div>
+
+      <div class="input-group margin-l-7">
+        <span class="input-group-addon">
+          <i class="fa fa-sort"></i>
+        </span>
+        <select [(ngModel)]="pagination.sorting" class="form-control form-select">
+          <option value="Name ASC">Sort by name from A to Z</option>
+          <option value="Name DESC">Sort by name form Z to A</option>
+        </select>
+      </div>
+
+      <button (click)="getAll()" type="button" class="btn btn-primary padding-tb-2 margin-l-7"> 
+        <i class="fa fa-search"></i> Search
+      </button>
+
+      <button (click)="exportExcel()" type="button" class="btn btn-info padding-tb-2 margin-l-7"> 
+        <i class="fa fa-file"></i> Export File Excel
+      </button>
+    </div>
   </div>
 
   <div class="full-width display-block">
@@ -36,6 +64,11 @@
             Edit</button>
         </td>
       </tr>
+
+      <tr *ngIf="pagination?.items?.length == 0">
+        <td colspan="3" class="text-center">No data</td>
+      </tr>
+
     </tbody>
   </table>
 </div>
