@@ -4,22 +4,24 @@
 
   <div class="padding-tb-10 padding-lr-10">
 
-    <button *ngIf="_session.user" (click)="singout()" type="button" class="btn btn-secondary pull-right">
+    <button *ngIf="_session.user" (click)="singout()" type="button" class="btn btn-secondary pull-right height-44">
       <i class="fa fa-sign-out"></i>
       Sign out
     </button>
 
-    <button *ngIf="_session.user" type="button" class="btn btn-success margin-r-5 pull-right">
-      <i class="fa fa-user"></i>
-      {{ _session.user.name }} {{ _session.user.surname }}
+    <button routerLink="user-profile" *ngIf="_session.user" type="button" class="btn btn-default margin-r-5 pull-right">
+      <img width="30" height="30" src="{{ _session.user.avatar }}" style="border-radius: 50px;">
+      <span class="margin-l-5">
+        {{ _session.user.name }} {{ _session.user.surname }}
+      </span>
     </button>
 
-    <button routerLink="register" type="button" class="btn btn-danger margin-r-5 pull-right">
+    <button routerLink="register" type="button" class="btn btn-danger margin-r-5 pull-right height-44">
       <i class="fa fa-users"></i>
       Sign up
     </button>
 
-    <button routerLink="login" *ngIf="!_session.user" type="button" class="btn btn-success margin-r-5 pull-right">
+    <button routerLink="login" *ngIf="!_session.user" type="button" class="btn btn-success margin-r-5 pull-right height-44">
       <i class="fa fa-user"></i>
       Sign in
     </button>
